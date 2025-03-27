@@ -30,7 +30,7 @@ ENV VIRTUAL_ENV=/venv
 RUN python3.8 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN pip install pip==20.2.3 setuptools==50.3.0 nodeenv
+RUN pip install pip==20.3.4 setuptools==61.3.1 nodeenv
 
 # Add node dependencies
 COPY package.json package.json
@@ -46,8 +46,8 @@ ADD . /openedx/discovery
 
 # Install requirements
 COPY requirements/ requirements/
-RUN make production-requirements \
-  && pip install python-json-logger==0.1.11
+RUN make production-requirements
+RUN pip install python-json-logger==0.1.11
 
 # Adding placeholders
 COPY ./.github/eol.py ./course_discovery/settings/eol.py
